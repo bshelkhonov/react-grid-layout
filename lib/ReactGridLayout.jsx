@@ -116,7 +116,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     onResize: noop,
     onResizeStop: noop,
     onDrop: noop,
-    onDropDragOver: noop
+    onDropDragOver: noop,
+    scrollValue: 5,
+    scrollThreshold: 30,
+    debounceScrollValue: 9,
   };
 
   state: State = {
@@ -555,7 +558,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       rowHeight,
       maxRows,
       useCSSTransforms,
-      transformScale
+      transformScale,
+      scrollValue,
+      scrollThreshold,
+      debounceScrollValue,
     } = this.props;
 
     // {...this.state.activeDrag} is pretty slow, actually
@@ -580,6 +586,9 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         isBounded={false}
         useCSSTransforms={useCSSTransforms}
         transformScale={transformScale}
+        scrollValue={scrollValue}
+        scrollThreshold={scrollThreshold}
+        debounceScrollValue={debounceScrollValue}
       >
         <div />
       </GridItem>
@@ -613,7 +622,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       draggableCancel,
       draggableHandle,
       resizeHandles,
-      resizeHandle
+      resizeHandle,
+      scrollValue,
+      scrollThreshold,
+      debounceScrollValue,
     } = this.props;
     const { mounted, droppingPosition } = this.state;
 
@@ -668,6 +680,9 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         droppingPosition={isDroppingItem ? droppingPosition : undefined}
         resizeHandles={resizeHandlesOptions}
         resizeHandle={resizeHandle}
+        scrollValue={scrollValue}
+        scrollThreshold={scrollThreshold}
+        debounceScrollValue={debounceScrollValue}
       >
         {child}
       </GridItem>
