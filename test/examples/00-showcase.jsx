@@ -24,6 +24,8 @@ type State = {|
 const availableHandles = ["s", "w", "e", "n", "sw", "nw", "se", "ne"];
 
 export default class ShowcaseLayout extends React.Component<Props, State> {
+  parentRef: any = React.createRef();
+
   static defaultProps: Props = {
     className: "layout",
     rowHeight: 30,
@@ -101,6 +103,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
 
   render(): React.Node {
     // eslint-disable-next-line no-unused-vars
+    this.parentRef.current = document.body;
     return (
       <div>
         <div>
@@ -131,6 +134,10 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
           useCSSTransforms={this.state.mounted}
           compactType={this.state.compactType}
           preventCollision={!this.state.compactType}
+          scrollValue={10}
+          scrollBottomThreshold={window.innerHeight - 70}
+          scrollTopThreshold={70}
+          debounceScrollValue={3}
         >
           {this.generateDOM()}
         </ResponsiveReactGridLayout>

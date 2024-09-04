@@ -12,10 +12,10 @@ var _utils = require("./utils");
 var _calculateUtils = require("./calculateUtils");
 var _ReactGridLayoutPropTypes = require("./ReactGridLayoutPropTypes");
 var _clsx = _interopRequireDefault(require("clsx"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 /*:: import type { Element as ReactElement, Node as ReactNode } from "react";*/
 /*:: import type {
   ReactDraggableCallbackData,
@@ -94,8 +94,10 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
   onResizeStop?: GridItemCallback<GridResizeEvent>,
 
   scrollValue: number,
-  scrollThreshold: number,
+  scrollTopThreshold: number,
+  scrollBottomThreshold: number,
   debounceScrollValue: number,
+  scrollElementRef?: any,
 };*/
 /*:: type DefaultProps = {
   className: string,
@@ -108,7 +110,8 @@ function _toPrimitive(input, hint) { if (typeof input !== "object" || input === 
   transformScale: number,
 
   scrollValue: number,
-  scrollThreshold: number,
+  scrollTopThreshold: number,
+  scrollBottomThreshold: number,
   debounceScrollValue: number,
 };*/
 /**
@@ -227,12 +230,9 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
 
       // Call callback with this data
       const {
-        containerPadding
-      } = this.props;
-      const {
         x,
         y
-      } = (0, _calculateUtils.calcXY)(positionParams, top - containerPadding[1], left - containerPadding[0], w, h);
+      } = (0, _calculateUtils.calcXY)(positionParams, top, left, w, h);
       return onDrag.call(this, i, x, y, {
         e,
         node,
@@ -258,8 +258,7 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
       const {
         w,
         h,
-        i,
-        containerPadding
+        i
       } = this.props;
       const {
         left,
@@ -275,7 +274,7 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
       const {
         x,
         y
-      } = (0, _calculateUtils.calcXY)(this.getPositionParams(), top - containerPadding[1], left - containerPadding[0], w, h);
+      } = (0, _calculateUtils.calcXY)(this.getPositionParams(), top, left, w, h);
       return onDragStop.call(this, i, x, y, {
         e,
         node,
@@ -404,9 +403,11 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
       cancel: ".react-resizable-handle" + (this.props.cancel ? "," + this.props.cancel : ""),
       scale: this.props.transformScale,
       nodeRef: this.elementRef,
-      scrollThreshold: this.props.scrollThreshold,
+      scrollTopThreshold: this.props.scrollTopThreshold,
+      scrollBottomThreshold: this.props.scrollBottomThreshold,
       scrollValue: this.props.scrollValue,
-      debounceScrollValue: this.props.debounceScrollValue
+      debounceScrollValue: this.props.debounceScrollValue,
+      scrollElementRef: this.props.scrollElementRef
     }, child);
   }
 
@@ -629,7 +630,8 @@ _defineProperty(GridItem, "propTypes", {
     top: _propTypes.default.number.isRequired
   }),
   scrollValue: _propTypes.default.number,
-  scrollThreshold: _propTypes.default.number,
+  scrollTopThreshold: _propTypes.default.number,
+  scrollBottomThreshold: _propTypes.default.number,
   debounceScrollValue: _propTypes.default.number
 });
 _defineProperty(GridItem, "defaultProps", {
@@ -642,6 +644,8 @@ _defineProperty(GridItem, "defaultProps", {
   maxW: Infinity,
   transformScale: 1,
   scrollValue: 5,
-  scrollThreshold: 50,
-  debounceScrollValue: 9
+  scrollTopThreshold: 50,
+  scrollBottomThreshold: 2000,
+  debounceScrollValue: 9,
+  scrollElementRef: undefined
 });

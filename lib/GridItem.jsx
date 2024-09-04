@@ -108,8 +108,10 @@ type Props = {
   onResizeStop?: GridItemCallback<GridResizeEvent>,
 
   scrollValue: number,
-  scrollThreshold: number,
+  scrollTopThreshold: number,
+  scrollBottomThreshold: number,
   debounceScrollValue: number,
+  scrollElementRef?: any,
 };
 
 type DefaultProps = {
@@ -123,7 +125,8 @@ type DefaultProps = {
   transformScale: number,
 
   scrollValue: number,
-  scrollThreshold: number,
+  scrollTopThreshold: number,
+  scrollBottomThreshold: number,
   debounceScrollValue: number,
 };
 
@@ -217,7 +220,8 @@ export default class GridItem extends React.Component<Props, State> {
     }),
 
     scrollValue: PropTypes.number,
-    scrollThreshold: PropTypes.number,
+    scrollTopThreshold: PropTypes.number,
+    scrollBottomThreshold: PropTypes.number,
     debounceScrollValue: PropTypes.number,
   };
 
@@ -232,8 +236,10 @@ export default class GridItem extends React.Component<Props, State> {
     transformScale: 1,
 
     scrollValue: 5,
-    scrollThreshold: 50,
+    scrollTopThreshold: 50,
+    scrollBottomThreshold: 2000,
     debounceScrollValue: 9,
+    scrollElementRef: undefined,
   };
 
   state: State = {
@@ -381,9 +387,11 @@ export default class GridItem extends React.Component<Props, State> {
         }
         scale={this.props.transformScale}
         nodeRef={this.elementRef}
-        scrollThreshold={this.props.scrollThreshold}
+        scrollTopThreshold={this.props.scrollTopThreshold}
+        scrollBottomThreshold={this.props.scrollBottomThreshold}
         scrollValue={this.props.scrollValue}
         debounceScrollValue={this.props.debounceScrollValue}
+        scrollElementRef={this.props.scrollElementRef}
       >
         {child}
       </DraggableCore>

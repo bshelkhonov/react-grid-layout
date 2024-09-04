@@ -118,8 +118,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     onDrop: noop,
     onDropDragOver: noop,
     scrollValue: 5,
-    scrollThreshold: 30,
+    scrollBottomThreshold: 30,
+    scrollTopThreshold: 2000,
     debounceScrollValue: 9,
+    scrollElementRef: undefined,
   };
 
   state: State = {
@@ -560,8 +562,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       useCSSTransforms,
       transformScale,
       scrollValue,
-      scrollThreshold,
+      scrollTopThreshold,
+      scrollBottomThreshold,
       debounceScrollValue,
+      scrollElementRef,
     } = this.props;
 
     // {...this.state.activeDrag} is pretty slow, actually
@@ -587,8 +591,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         useCSSTransforms={useCSSTransforms}
         transformScale={transformScale}
         scrollValue={scrollValue}
-        scrollThreshold={scrollThreshold}
+        scrollTopThreshold={scrollTopThreshold}
+        scrollBottomThreshold={scrollBottomThreshold}
         debounceScrollValue={debounceScrollValue}
+        scrollElementRef={scrollElementRef}
       >
         <div />
       </GridItem>
@@ -624,8 +630,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       resizeHandles,
       resizeHandle,
       scrollValue,
-      scrollThreshold,
+      scrollTopThreshold,
+      scrollBottomThreshold,
       debounceScrollValue,
+      scrollElementRef,
     } = this.props;
     const { mounted, droppingPosition } = this.state;
 
@@ -681,8 +689,10 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         resizeHandles={resizeHandlesOptions}
         resizeHandle={resizeHandle}
         scrollValue={scrollValue}
-        scrollThreshold={scrollThreshold}
+        scrollTopThreshold={scrollTopThreshold}
+        scrollBottomThreshold={scrollBottomThreshold}
         debounceScrollValue={debounceScrollValue}
+        scrollElementRef={scrollElementRef}
       >
         {child}
       </GridItem>

@@ -34,7 +34,7 @@ exports.validateLayout = validateLayout;
 exports.withLayoutItem = withLayoutItem;
 var _fastEquals = require("fast-equals");
 var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /*:: import type {
   ChildrenArray as ReactChildrenArray,
   Element as ReactElement
@@ -805,9 +805,14 @@ function validateLayout(layout /*: Layout*/) /*: void*/{
   for (let i = 0, len = layout.length; i < len; i++) {
     const item = layout[i];
     for (let j = 0; j < subProps.length; j++) {
-      if (typeof item[subProps[j]] !== "number") {
-        throw new Error("ReactGridLayout: " + contextName + "[" + i + "]." + subProps[j] + " must be a number!");
+      const key = subProps[j];
+      const value = item[key];
+      if (typeof value !== "number" || Number.isNaN(value)) {
+        throw new Error(`ReactGridLayout: ${contextName}[${i}].${key} must be a number! Received: ${value} (${typeof value})`);
       }
+    }
+    if (typeof item.i !== "undefined" && typeof item.i !== "string") {
+      throw new Error(`ReactGridLayout: ${contextName}[${i}].i must be a string! Received: ${item.i} (${typeof item.i})`);
     }
   }
 }

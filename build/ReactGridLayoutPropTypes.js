@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.resizeHandleType = exports.resizeHandleAxesType = exports.default = void 0;
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /*:: import type {
   Ref,
   ChildrenArray as ReactChildrenArray,
@@ -85,8 +85,10 @@ const resizeHandleType /*: ReactPropsChainableTypeChecker*/ = exports.resizeHand
 
   // Scroll parameters
   scrollValue: number,
-  scrollThreshold: number,
+  scrollBottomThreshold: number,
+  scrollTopThreshold: number,
   debounceScrollValue: number,
+  scrollElementRef?: any,
 |};*/
 /*:: export type DefaultProps = $Diff<
   Props,
@@ -213,6 +215,8 @@ var _default = exports.default = {
   // Optional ref for getting a reference for the wrapping div.
   innerRef: _propTypes.default.any,
   scrollValue: _propTypes.default.number,
-  scrollThreshold: _propTypes.default.number,
-  debounceScrollValue: _propTypes.default.number
+  scrollTopThreshold: _propTypes.default.number,
+  scrollBottomThreshold: _propTypes.default.number,
+  debounceScrollValue: _propTypes.default.number,
+  scrollElementRef: _propTypes.default.any
 };
