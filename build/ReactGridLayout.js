@@ -580,7 +580,8 @@ class ReactGridLayout extends React.Component /*:: <Props, State>*/{
       scrollTopThreshold,
       scrollBottomThreshold,
       debounceScrollValue,
-      scrollElementRef
+      scrollElementRef,
+      scrollTimeoutValue
     } = this.props;
 
     // {...this.state.activeDrag} is pretty slow, actually
@@ -606,7 +607,8 @@ class ReactGridLayout extends React.Component /*:: <Props, State>*/{
       scrollTopThreshold: scrollTopThreshold,
       scrollBottomThreshold: scrollBottomThreshold,
       debounceScrollValue: debounceScrollValue,
-      scrollElementRef: scrollElementRef
+      scrollElementRef: scrollElementRef,
+      scrollTimeoutValue: scrollTimeoutValue
     }, /*#__PURE__*/React.createElement("div", null));
   }
 
@@ -639,7 +641,8 @@ class ReactGridLayout extends React.Component /*:: <Props, State>*/{
       scrollTopThreshold,
       scrollBottomThreshold,
       debounceScrollValue,
-      scrollElementRef
+      scrollElementRef,
+      scrollTimeoutValue
     } = this.props;
     const {
       mounted,
@@ -693,7 +696,8 @@ class ReactGridLayout extends React.Component /*:: <Props, State>*/{
       scrollTopThreshold: scrollTopThreshold,
       scrollBottomThreshold: scrollBottomThreshold,
       debounceScrollValue: debounceScrollValue,
-      scrollElementRef: scrollElementRef
+      scrollElementRef: scrollElementRef,
+      scrollTimeoutValue: scrollTimeoutValue
     }, child);
   }
   render() /*: React.Element<"div">*/{
@@ -766,5 +770,6 @@ _defineProperty(ReactGridLayout, "defaultProps", {
   scrollBottomThreshold: 30,
   scrollTopThreshold: 2000,
   debounceScrollValue: 9,
-  scrollElementRef: undefined
+  scrollElementRef: undefined,
+  scrollTimeoutValue: 0.05
 });

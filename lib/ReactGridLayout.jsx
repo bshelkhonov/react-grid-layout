@@ -122,6 +122,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     scrollTopThreshold: 2000,
     debounceScrollValue: 9,
     scrollElementRef: undefined,
+    scrollTimeoutValue: 0.05,
   };
 
   state: State = {
@@ -566,6 +567,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       scrollBottomThreshold,
       debounceScrollValue,
       scrollElementRef,
+      scrollTimeoutValue,
     } = this.props;
 
     // {...this.state.activeDrag} is pretty slow, actually
@@ -595,6 +597,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         scrollBottomThreshold={scrollBottomThreshold}
         debounceScrollValue={debounceScrollValue}
         scrollElementRef={scrollElementRef}
+        scrollTimeoutValue={scrollTimeoutValue}
       >
         <div />
       </GridItem>
@@ -634,6 +637,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       scrollBottomThreshold,
       debounceScrollValue,
       scrollElementRef,
+      scrollTimeoutValue,
     } = this.props;
     const { mounted, droppingPosition } = this.state;
 
@@ -693,6 +697,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
         scrollBottomThreshold={scrollBottomThreshold}
         debounceScrollValue={debounceScrollValue}
         scrollElementRef={scrollElementRef}
+        scrollTimeoutValue={scrollTimeoutValue}
       >
         {child}
       </GridItem>

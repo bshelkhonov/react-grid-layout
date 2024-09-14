@@ -6038,9 +6038,17 @@ react-dom@^16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-draggable@^4.0.3, "react-draggable@github:bshelkhonov/react-draggable#master":
+react-draggable@^4.0.3:
   version "4.4.6"
   resolved "https://codeload.github.com/bshelkhonov/react-draggable/tar.gz/f3c8d3f822b7a694e674eab2e08187c956c76c23"
+  dependencies:
+    clsx "^1.1.1"
+    lodash "^4.17.4"
+    prop-types "^15.8.1"
+
+"react-draggable@github:bshelkhonov/react-draggable#rework":
+  version "4.4.6"
+  resolved "https://codeload.github.com/bshelkhonov/react-draggable/tar.gz/edc43f0ceaa2e1cfa8c26200f4dac84c973c33a0"
   dependencies:
     clsx "^1.1.1"
     lodash "^4.17.4"

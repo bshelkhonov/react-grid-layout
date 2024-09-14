@@ -138,6 +138,7 @@ export default class ShowcaseLayout extends React.Component<Props, State> {
           scrollBottomThreshold={window.innerHeight - 70}
           scrollTopThreshold={70}
           debounceScrollValue={3}
+          scrollTimeoutValue={0.5}
         >
           {this.generateDOM()}
         </ResponsiveReactGridLayout>

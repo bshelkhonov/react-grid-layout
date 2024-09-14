@@ -89,6 +89,7 @@ const resizeHandleType /*: ReactPropsChainableTypeChecker*/ = exports.resizeHand
   scrollTopThreshold: number,
   debounceScrollValue: number,
   scrollElementRef?: any,
+  scrollTimeoutValue: number,
 |};*/
 /*:: export type DefaultProps = $Diff<
   Props,
@@ -218,5 +219,6 @@ var _default = exports.default = {
   scrollTopThreshold: _propTypes.default.number,
   scrollBottomThreshold: _propTypes.default.number,
   debounceScrollValue: _propTypes.default.number,
-  scrollElementRef: _propTypes.default.any
+  scrollElementRef: _propTypes.default.any,
+  scrollTimeoutValue: _propTypes.default.number
 };

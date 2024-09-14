@@ -98,6 +98,7 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
   scrollBottomThreshold: number,
   debounceScrollValue: number,
   scrollElementRef?: any,
+  scrollTimeoutValue: number,
 };*/
 /*:: type DefaultProps = {
   className: string,
@@ -113,6 +114,7 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
   scrollTopThreshold: number,
   scrollBottomThreshold: number,
   debounceScrollValue: number,
+  scrollTimeoutValue: number,
 };*/
 /**
  * An individual item within a ReactGridLayout.
@@ -407,7 +409,8 @@ class GridItem extends _react.default.Component /*:: <Props, State>*/{
       scrollBottomThreshold: this.props.scrollBottomThreshold,
       scrollValue: this.props.scrollValue,
       debounceScrollValue: this.props.debounceScrollValue,
-      scrollElementRef: this.props.scrollElementRef
+      scrollElementRef: this.props.scrollElementRef,
+      scrollTimeoutValue: this.props.scrollTimeoutValue
     }, child);
   }
 
@@ -632,7 +635,8 @@ _defineProperty(GridItem, "propTypes", {
   scrollValue: _propTypes.default.number,
   scrollTopThreshold: _propTypes.default.number,
   scrollBottomThreshold: _propTypes.default.number,
-  debounceScrollValue: _propTypes.default.number
+  debounceScrollValue: _propTypes.default.number,
+  scrollTimeoutValue: _propTypes.default.number
 });
 _defineProperty(GridItem, "defaultProps", {
   className: "",
@@ -647,5 +651,6 @@ _defineProperty(GridItem, "defaultProps", {
   scrollTopThreshold: 50,
   scrollBottomThreshold: 2000,
   debounceScrollValue: 9,
-  scrollElementRef: undefined
+  scrollElementRef: undefined,
+  scrollTimeoutValue: 0.05
 });

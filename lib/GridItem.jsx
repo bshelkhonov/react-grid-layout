@@ -112,6 +112,7 @@ type Props = {
   scrollBottomThreshold: number,
   debounceScrollValue: number,
   scrollElementRef?: any,
+  scrollTimeoutValue: number,
 };
 
 type DefaultProps = {
@@ -128,6 +129,7 @@ type DefaultProps = {
   scrollTopThreshold: number,
   scrollBottomThreshold: number,
   debounceScrollValue: number,
+  scrollTimeoutValue: number,
 };
 
 /**
@@ -223,6 +225,7 @@ export default class GridItem extends React.Component<Props, State> {
     scrollTopThreshold: PropTypes.number,
     scrollBottomThreshold: PropTypes.number,
     debounceScrollValue: PropTypes.number,
+    scrollTimeoutValue: PropTypes.number,
   };
 
   static defaultProps: DefaultProps = {
@@ -240,6 +243,7 @@ export default class GridItem extends React.Component<Props, State> {
     scrollBottomThreshold: 2000,
     debounceScrollValue: 9,
     scrollElementRef: undefined,
+    scrollTimeoutValue: 0.05,
   };
 
   state: State = {
@@ -392,6 +396,7 @@ export default class GridItem extends React.Component<Props, State> {
         scrollValue={this.props.scrollValue}
         debounceScrollValue={this.props.debounceScrollValue}
         scrollElementRef={this.props.scrollElementRef}
+        scrollTimeoutValue={this.props.scrollTimeoutValue}
       >
         {child}
       </DraggableCore>
